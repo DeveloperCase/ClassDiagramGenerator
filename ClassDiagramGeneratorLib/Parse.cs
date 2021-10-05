@@ -5,7 +5,12 @@ namespace ClassDiagramGeneratorLib
 {
     public class Parse
     {
-        public static List<string> GetComment(string path)
+        /// <summary>
+        /// Парсит данные из файла, пропуская коментарии
+        /// </summary>
+        /// <param name="path"> Путь к файлу</param>
+        /// <returns>Список полей и методов</returns>
+        public static List<string> GetFields(string path)
         {
             using var file = new StreamReader(path);
             List<string> list = new List<string>();
@@ -20,6 +25,7 @@ namespace ClassDiagramGeneratorLib
                         list.Add(line);
                 }
             }
+
             return list;
         }
     }

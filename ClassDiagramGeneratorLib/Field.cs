@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClassDiagramGeneratorLib.class_internals.field
+namespace ClassDiagramGeneratorLib
 {
     public class Field : Declare
     {
@@ -9,7 +9,6 @@ namespace ClassDiagramGeneratorLib.class_internals.field
             get => Name;
             private set => Name = value;
         }
-
         public string Value { get; set; }
         public string SplitSumbol { get; set; }
         public bool Get { get; set; }

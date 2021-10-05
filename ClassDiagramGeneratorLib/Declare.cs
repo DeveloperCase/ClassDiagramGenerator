@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace ClassDiagramGeneratorLib.class_internals
+﻿
+namespace ClassDiagramGeneratorLib
 {
     public abstract class Declare
     {
