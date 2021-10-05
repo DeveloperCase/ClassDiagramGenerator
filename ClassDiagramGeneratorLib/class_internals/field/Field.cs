@@ -53,20 +53,25 @@ namespace ClassDiagramGeneratorLib.class_internals.field
             ParseClass(line);
         }
 
+        /// <summary>
+        /// Парсинг полей
+        /// </summary>
+        /// <param name="line">  содержи в себе одну строчку с полем класса</param>
+        /// <returns> Возвращает себя с проинициализированными полями для вывода или записи в ClassView</returns>
         public Field ParseField(string line)
         {
-            if (ThisIsClass(line))
+            if (ThisIsClass(line)) // если мы нашли класс или структуру
             {
-                ParseClass(line);
+                ParseClass(line);  // то парсим это как класс и инициализирум поля ClassName
                 return this;
             }
 
-            ParseAccessModifer(line);
-            ParseDataType(line);
-            ParseVariable(line);
-            ParseValue(line);
-            if (line.Contains("get")) Get = true;
-            if (line.Contains("set")) Set = true;
+            ParseAccessModifer(line); // Парсим модификаторы
+            ParseDataType(line);      // Парсим тип данных
+            ParseVariable(line);      // Парсим переменную
+            ParseValue(line);         // Парсим значение если оно есть
+            if (line.Contains("get")) Get = true;  // если стока содержит в себе get то инициализируем Get поле
+            if (line.Contains("set")) Set = true;  // если стока в себе set то инициализируем Get поле
             return this;
         }
 
@@ -114,6 +119,11 @@ namespace ClassDiagramGeneratorLib.class_internals.field
             AccessModifier = AccessModifier.TrimEnd();
         }
 
+        /// <summary>
+        /// Удаляем модификаторы из строки
+        /// </summary>
+        /// <param name="line"> accessModifier type variableName = value;</param>
+        /// <returns>Возвращает type variablename = value;</returns>
         private string DeleteAccessModifier(string line)
         {
             if (line == string.Empty) return string.Empty;
@@ -130,6 +140,11 @@ namespace ClassDiagramGeneratorLib.class_internals.field
             return line.TrimStart();
         }
 
+        /// <summary>
+        /// Удаляем тип данных из строки
+        /// </summary>
+        /// <param name="line"> type variableName = value;</param>
+        /// <returns>Возвращает variablename = value;</returns>
         private string DeleteDataType(string line)
         {
             if (line == string.Empty) return string.Empty;
@@ -144,6 +159,11 @@ namespace ClassDiagramGeneratorLib.class_internals.field
             return line.TrimStart();
         }
 
+        /// <summary>
+        /// Удаляем имя переменной из строки
+        /// </summary>
+        /// <param name="line"> variableName = value;</param>
+        /// <returns>Возвращает value;</returns>
         private string DeleteVariableName(string line)
         {
             if (line == string.Empty) return string.Empty;
@@ -187,6 +207,12 @@ namespace ClassDiagramGeneratorLib.class_internals.field
             Type += constSplit + line.Remove(splitIntoType, line.Length - splitIntoType);
         }
 
+        /// <summary>
+        /// Конец строки
+        /// </summary>
+        /// <param name="line"> передаем значение </param>
+        /// <returns>Возвращет найденный конец строки
+        /// </returns>
         private int EndOfLine(string line)
         {
             int endLineIndex = line.IndexOf("=");
