@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Net.Mime;
-using System.Text;
-using Microsoft.VisualBasic.FileIO;
 
 namespace ClassDiagramGeneratorLib
 {
     public class Parse
     {
-        public static List<string> ReadFile(string path)
+        public static List<string> GetComment(string path)
         {
             using var file = new StreamReader(path);
             List<string> list = new List<string>();
@@ -26,6 +22,5 @@ namespace ClassDiagramGeneratorLib
             }
             return list;
         }
-
     }
 }
