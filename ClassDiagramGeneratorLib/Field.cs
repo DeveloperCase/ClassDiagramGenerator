@@ -4,20 +4,17 @@ namespace ClassDiagramGeneratorLib
 {
     public class Field : Declare
     {
-        public string NameVariable
-        {
-            get => Name;
-            private set => Name = value;
-        }
+        public string NameVariable { get; set; }
         public string Value { get; set; }
-        public string SplitSumbol { get; set; }
         public bool Get { get; set; }
         public bool Set { get; set; }
+        public string CurlyBrace { get; set; }
+
 
         public Field() : base()
         {
             Value = null;
-            SplitSumbol = null;
+            CurlyBrace = null;
             AccessModifier = null;
             Get = false;
             Set = false;
@@ -61,20 +58,20 @@ namespace ClassDiagramGeneratorLib
         {
             if (ThisIsClass(line)) // если мы нашли класс или структуру
             {
-                ParseClass(line);  // то парсим это как класс и инициализирум поля ClassName
+                ParseClass(line); // то парсим это как класс и инициализирум поля ClassName
                 return this;
             }
 
             ParseAccessModifer(line); // Парсим модификаторы
-            ParseDataType(line);      // Парсим тип данных
-            ParseVariable(line);      // Парсим переменную
-            ParseValue(line);         // Парсим значение если оно есть
-            if (line.Contains("get")) Get = true;  // если стока содержит в себе get то инициализируем Get поле
-            if (line.Contains("set")) Set = true;  // если стока в себе set то инициализируем Get поле
+            ParseDataType(line); // Парсим тип данных
+            ParseVariable(line); // Парсим переменную
+            ParseValue(line); // Парсим значение если оно есть
+            if (line.Contains("get")) Get = true; // если стока содержит в себе get то инициализируем Get поле
+            if (line.Contains("set")) Set = true; // если стока в себе set то инициализируем Get поле
             return this;
         }
 
-        private bool IsSplitSumbol(string line)
+        private bool IsCurlyBrace(string line)
         {
             if (line == string.Empty) return false;
             line = line.Trim();
@@ -89,9 +86,9 @@ namespace ClassDiagramGeneratorLib
         private void ParseAccessModifer(string line)
         {
             if (line == string.Empty) return;
-            if (IsSplitSumbol(line))
+            if (IsCurlyBrace(line))
             {
-                SplitSumbol = line.Trim();
+                CurlyBrace = line.Trim();
                 return;
             }
 
@@ -183,9 +180,9 @@ namespace ClassDiagramGeneratorLib
         private void ParseDataType(string line)
         {
             if (line == string.Empty) return;
-            if (IsSplitSumbol(line))
+            if (IsCurlyBrace(line))
             {
-                SplitSumbol = line.Trim();
+                CurlyBrace = line.Trim();
                 return;
             }
 
@@ -238,9 +235,9 @@ namespace ClassDiagramGeneratorLib
         private void ParseVariable(string line)
         {
             if (line == string.Empty) return;
-            if (IsSplitSumbol(line))
+            if (IsCurlyBrace(line))
             {
-                SplitSumbol = line.Trim();
+                CurlyBrace = line.Trim();
                 return;
             }
 
@@ -254,9 +251,9 @@ namespace ClassDiagramGeneratorLib
         private void ParseValue(string line)
         {
             if (line == string.Empty) return;
-            if (IsSplitSumbol(line))
+            if (IsCurlyBrace(line))
             {
-                SplitSumbol = line.Trim();
+                CurlyBrace = line.Trim();
                 return;
             }
 

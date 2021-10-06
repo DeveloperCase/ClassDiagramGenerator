@@ -11,6 +11,7 @@ namespace ClassDiagramGeneratorLib
             {
                 return true;
             }
+
             return false;
         }
 
