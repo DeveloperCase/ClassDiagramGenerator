@@ -382,6 +382,7 @@ FodyWeavers.xsd
 .history/
 
 # Windows Installer files from build outputs
+testClass/
 *.cab
 *.msi
 *.msix
