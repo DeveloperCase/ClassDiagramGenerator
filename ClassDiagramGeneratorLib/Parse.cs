@@ -5,6 +5,15 @@ namespace ClassDiagramGeneratorLib
 {
     public class Parse
     {
+        public static bool IsComment(string line)
+        {
+            if (line.Contains("//") || line.Contains("/*") || line.Contains("*/"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Парсит данные из файла, пропуская коментарии
         /// </summary>
@@ -18,7 +27,7 @@ namespace ClassDiagramGeneratorLib
             string line = string.Empty;
             while ((line = file.ReadLine()) != null)
             {
-                if (!(line.Contains("//") || line.Contains("/*") || line.Contains("*/")))
+                if (!IsComment(line))
                 {
                     line = line.Trim();
                     if (line != "" && line != "\r")
