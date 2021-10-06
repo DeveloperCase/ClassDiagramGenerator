@@ -1,6 +1,6 @@
 ﻿namespace ClassDiagramGeneratorLib
 {
-    public class Method
+    public class Method : Declare
     {
         public string Parenthesis { get; set; }
 
