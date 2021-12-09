@@ -94,55 +94,19 @@ namespace ClassDiagramGeneratorLib
         public List<string> GetMethods()
         {
             List<string> methods = new List<string>();
-            List<string> line = GetBinaryFile();
+            List<string> file = GetBinaryFile();
             string methodStatment = string.Empty;
             int countStartToken = 0;
 
-            for (int i = 0; i < line.Count; ++i)
+
+            // TODO :: 1. Найти START_TOKEN ("(")
+
+
+            foreach (var line in file)
             {
-                methodStatment = string.Empty;
-                countStartToken = 0;
-                if (IsNotMethod(line[i])) continue;
-                if (line[i].Contains("("))
+                if (IsNotMethod(line))
                 {
-                    methodStatment += line[i];
-
-                    //////////////////////////////////////////////////////////////////////////////////////////////
-                    countStartToken += countChar('(', line[i]); // Отчищаем statment если это не метод
-                    if (countStartToken > 1)
-                    {
-                        methodStatment = string.Empty;
-                        continue;
-                    }
-                    //////////////////////////////////////////////////////////////////////////////////////////////
-
-
-                    ///////////////////////////////////////////////////////////////////////////////////////
-                    while (!line[i].Contains(")")) // Ищем конец метода statmenta
-                    {
-                        ++i;
-
-                        countStartToken += countChar('(', line[i]);
-
-                        if (countStartToken > 1)
-                        {
-                            methodStatment = string.Empty;
-                            break;
-                        }
-
-                        methodStatment += line[i];
-                    }
-                    /////////////////////////////////////////////////////////////////////////////////
-                }
-
-                if (methodStatment.Contains(";")) // Не метод
-                {
-                    continue;
-                }
-
-                if (methodStatment != string.Empty)
-                {
-                    methods.Add(methodStatment);
+                    
                 }
             }
 
