@@ -8,8 +8,6 @@ namespace ClassDiagramGeneratorLib
     public class Parse
     {
         public string Path { get; set; }
-        public const string START = "{";
-        public const string END = "}";
         public List<string> File { get; set; }
 
         public Parse()
@@ -69,58 +67,101 @@ namespace ClassDiagramGeneratorLib
             return false;
         }
 
-        public int countChar(char symbol, string line)
+        public int countChar(char ch, string line)
         {
             int count = 0;
 
-            //////////////  Проверяем если в статменте две скобки ( ( , то это не метод
-            foreach (var c in line)
+            foreach (var index in line)
             {
                 if (count > 1)
                 {
                     break;
                 }
 
-                if (c == '(')
+                if (index == ch)
                 {
                     ++count;
                 }
             }
 
-            //////////
             return count;
         }
 
         public List<string> GetMethods()
         {
             List<string> methods = new List<string>();
-            List<string> file = GetBinaryFile();
+            List<string> list = GetBinaryFile();
             string methodStatment = string.Empty;
-            int countStartToken = 0;
 
+            // TODO :: СОКРАТИТЬ КОД и разделить на методы
 
-            // TODO :: 1. Найти START_TOKEN ("(")
+            bool bStart = false;
+            bool bEnd = false;
+            int countStart = 0;
+            int countEnd = 0;
+            string statment = string.Empty;
 
-
-            foreach (var line in file)
+            for (int i = 0; i < list.Count; ++i)
             {
-                if (IsNotMethod(line))
+                statment += list[i];
+                if (IsNotMethod(list[i]) || statment.Contains(';'))
                 {
-                    
+                    statment = string.Empty;
+                    continue;
                 }
+
+                if (SearcheStart('(', list[i]))
+                {
+                    countStart += countChar('(', list[i]);
+                }
+
+                if (SearcheEnd(')', list[i]))
+                {
+                   countEnd += countChar(')', list[i]);
+                }
+
+                if (countStart == countEnd && countStart > 0 && countEnd > 0)
+                {
+                    methods.Add(statment);
+                }
+                else if (countStart > countEnd && countStart > 0) // Перебираем строки ищем конец метода
+                {
+                    while (countStart != countEnd)
+                    {
+                        ++i;
+                        countStart += countChar('(', list[i]);
+                        countEnd += countChar(')', list[i]);
+                        statment += list[i];
+                    }
+
+                    if (!statment.Contains(';'))
+                    {
+                        methods.Add(statment);
+                    }
+                }
+
+                statment = string.Empty;
+
+                countStart = 0;
+                countEnd = 0;
             }
 
             return methods;
         }
 
-        public bool SearcheStart(char ch)
+        public bool SearcheStart(char ch, string line)
+        {
+            return line.Contains(ch);
+        }
+
+        public bool NextToken()
         {
             return false;
         }
 
-        public bool SearcheEnd(char ch)
+        public bool SearcheEnd(char ch, string line)
         {
-            return false;
+            return line.Contains(ch);
         }
     }
 }
