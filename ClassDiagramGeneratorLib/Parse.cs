@@ -1,7 +1,6 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.IO;
-using ClassDiagramGeneratorLib.utils;
 
 namespace ClassDiagramGeneratorLib
 {
@@ -45,7 +44,6 @@ namespace ClassDiagramGeneratorLib
         public bool IsNotMethod(string line)
         {
             // TODO :: добавить еще ключевых слов в котрых используется ()
-            // IS METHOD
             List<string> listKeyWord = new List<string>();
             listKeyWord.Add("foreach");
             listKeyWord.Add("for");
@@ -141,7 +139,6 @@ namespace ClassDiagramGeneratorLib
                 }
 
                 statment = string.Empty;
-
                 countStart = 0;
                 countEnd = 0;
             }
