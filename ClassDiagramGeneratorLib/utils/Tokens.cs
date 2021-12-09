@@ -6,24 +6,14 @@ namespace ClassDiagramGeneratorLib.utils
     public class Tokens
     {
         public List<string> Start { get; set; }
-        public List<string> KeyWord { get; set; }
-        public List<string> Comment { get; set; }
+        public List<string> KeyWords { get; set; }
         public List<string> End { get; set; }
 
         public Tokens()
         {
             Start = new List<string>();
-            KeyWord = new List<string>();
+            KeyWords = new List<string>();
             End = new List<string>();
-            Comment = new List<string>();
-        }
-
-        public void AddComment(params string[] comment)
-        {
-            foreach (var token in comment)
-            {
-                Comment.Add(token);
-            }
         }
 
         public void AddStart(params string[] start)
@@ -38,7 +28,7 @@ namespace ClassDiagramGeneratorLib.utils
         {
             foreach (var token in keyWord)
             {
-                KeyWord.Add(token);
+                KeyWords.Add(token);
             }
         }
 
