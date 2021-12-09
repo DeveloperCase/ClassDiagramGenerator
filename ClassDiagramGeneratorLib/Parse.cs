@@ -27,7 +27,6 @@ namespace ClassDiagramGeneratorLib
                     list.Add(line);
                 }
             }
-
             return list;
         }
 
