@@ -1,6 +1,7 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace ClassDiagramGeneratorLib
 {
@@ -27,6 +28,7 @@ namespace ClassDiagramGeneratorLib
                     list.Add(line);
                 }
             }
+
             return list;
         }
 
@@ -44,6 +46,7 @@ namespace ClassDiagramGeneratorLib
         {
             // TODO :: добавить еще ключевых слов в котрых используется ()
             List<string> listKeyWord = new List<string>();
+            listKeyWord.Add(";");
             listKeyWord.Add("foreach");
             listKeyWord.Add("for");
             listKeyWord.Add("else");
@@ -84,60 +87,48 @@ namespace ClassDiagramGeneratorLib
             return count;
         }
 
+
         public List<string> GetMethods()
         {
             List<string> methods = new List<string>();
             List<string> list = GetBinaryFile();
-            string methodStatment = string.Empty;
 
-            // TODO :: СОКРАТИТЬ КОД и разделить на методы
-
-            bool bStart = false;
-            bool bEnd = false;
             int countStart = 0;
             int countEnd = 0;
-            string statment = string.Empty;
+            string methodStatment = string.Empty;
 
-            for (int i = 0; i < list.Count; ++i)
+            int i = 0;
+
+            for (; i < list.Count; ++i)
             {
-                statment += list[i];
-                if (IsNotMethod(list[i]) || statment.Contains(';'))
+                if (IsNotMethod(list[i]) || methodStatment.Contains(';'))
                 {
-                    statment = string.Empty;
+                    methodStatment = string.Empty;
                     continue;
                 }
 
-                if (SearcheStart('(', list[i]))
-                {
-                    countStart += countChar('(', list[i]);
-                }
-
-                if (SearcheEnd(')', list[i]))
-                {
-                   countEnd += countChar(')', list[i]);
-                }
+                countStart += countChar('(', list[i]);
+                countEnd += countChar(')', list[i]);
 
                 if (countStart == countEnd && countStart > 0 && countEnd > 0)
                 {
-                    methods.Add(statment);
+                    var (method, index) = SearcheMethod(list, i); // Перебираем строки ищем конец method statment
+                    methodStatment = method;
+                    i = index;
                 }
-                else if (countStart > countEnd && countStart > 0) // Перебираем строки ищем конец метода
+                else if (countStart > countEnd && countStart > 0)
                 {
-                    while (countStart != countEnd)
-                    {
-                        ++i;
-                        countStart += countChar('(', list[i]);
-                        countEnd += countChar(')', list[i]);
-                        statment += list[i];
-                    }
-
-                    if (!statment.Contains(';'))
-                    {
-                        methods.Add(statment);
-                    }
+                    var (method, index) = SearcheMethod(list, i); // Перебираем строки ищем конец method statment
+                    methodStatment = method;
+                    i = index;
                 }
 
-                statment = string.Empty;
+                if (methodStatment != string.Empty)
+                {
+                    methods.Add(methodStatment);
+                }
+
+                methodStatment = string.Empty;
                 countStart = 0;
                 countEnd = 0;
             }
@@ -145,19 +136,31 @@ namespace ClassDiagramGeneratorLib
             return methods;
         }
 
-        public bool SearcheStart(char ch, string line)
+        private Tuple<string, int> SearcheMethod(List<string> list, int i)
         {
-            return line.Contains(ch);
-        }
+            List<string> methods = new List<string>();
+            bool addStatment = true;
 
-        public bool NextToken()
-        {
-            return false;
-        }
+            string method = list[i];
 
-        public bool SearcheEnd(char ch, string line)
-        {
-            return line.Contains(ch);
+            while (!list[i].Contains("{") && i < list.Count)
+            {
+                ++i;
+                if (list[i].Contains("}"))
+                {
+                    addStatment = false;
+                    break;
+                }
+
+                method += list[i];
+            }
+
+            if (!method.Contains(';') && addStatment)
+            {
+                return Tuple.Create(method, i); // кортежи. Метод найден
+            }
+
+            return Tuple.Create(string.Empty, i); // кортежи. Метод не найден
         }
     }
 }
