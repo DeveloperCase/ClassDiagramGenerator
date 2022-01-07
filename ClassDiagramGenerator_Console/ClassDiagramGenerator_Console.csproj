@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ClassDiagramGeneratorLib\ClassDiagramGeneratorLib.csproj" />
       <ProjectReference Include="..\Tree_Lib\Tree_Lib.csproj" />
     </ItemGroup>
 

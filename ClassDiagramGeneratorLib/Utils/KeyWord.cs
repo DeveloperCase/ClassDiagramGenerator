@@ -23,7 +23,7 @@
         {
             string[] property = { "get", "set" ,"init"};
             return property;
-        }
+        } 
         
         public static string[] Field()
         {
@@ -40,6 +40,10 @@
         public static string Void()
         {
             return "void";
+        }
+        public static string Using()
+        {
+            return "using";
         }
     }
 }

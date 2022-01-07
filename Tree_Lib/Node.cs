@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace TreeCSharp
 {
     public class Node
-    {
+    { 
         public string Name { get; set; }
         public Node ParentNodes { get; set; }
         public List<Node> ChildrenNodes { get; set; }

@@ -3,14 +3,15 @@
     public class Tree
     {
         public string Name { get; set; }
-        public Node Root { get; set; }
+        public Node Root { get; }
+
         public Tree(string name)
         {
             Root = new Node();
             Root.Name = name;
         }
 
-        public void AddChildren(string name)
+        public void AddChild(string name)
         {
             Node node = new Node();
             node.Name = name;
@@ -44,8 +45,8 @@
         {
             Node node = new Node();
             node.Name = leaf;
-            Node node2 = FindAll(name);
-            node2.ChildrenNodes.Add(node);
+            Node findNode = FindAll(name);
+            findNode.ChildrenNodes.Add(node);
         }
     }
 }

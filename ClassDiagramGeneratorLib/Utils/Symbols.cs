@@ -6,7 +6,7 @@
         {
             string[] comments = { "//", "/*", "*/" };
             return comments;
-        }
+        } 
 
         public static string StartBlock()
         {
