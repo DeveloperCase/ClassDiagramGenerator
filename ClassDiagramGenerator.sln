@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagramGeneratorLib", "ClassDiagramGeneratorLib\ClassDiagramGeneratorLib.csproj", "{56F3A227-DF24-4047-8669-025792E5DAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagramGenerator_Console", "ClassDiagramGenerator_Console\ClassDiagramGenerator_Console.csproj", "{8BE3F340-BBFE-4F06-82DE-053FF7448FFF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagramGenerator_WPF", "ClassDiagramGenerator_WPF\ClassDiagramGenerator_WPF.csproj", "{8AC52DB5-1E21-4FEA-A760-C96BD4510B00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tree_Lib", "Tree_Lib\Tree_Lib.csproj", "{A182C34B-0146-4ED1-8EF0-3D11E4E2C576}"
@@ -18,10 +16,6 @@ Global
 		{56F3A227-DF24-4047-8669-025792E5DAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56F3A227-DF24-4047-8669-025792E5DAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56F3A227-DF24-4047-8669-025792E5DAC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BE3F340-BBFE-4F06-82DE-053FF7448FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BE3F340-BBFE-4F06-82DE-053FF7448FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BE3F340-BBFE-4F06-82DE-053FF7448FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BE3F340-BBFE-4F06-82DE-053FF7448FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AC52DB5-1E21-4FEA-A760-C96BD4510B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8AC52DB5-1E21-4FEA-A760-C96BD4510B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AC52DB5-1E21-4FEA-A760-C96BD4510B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
