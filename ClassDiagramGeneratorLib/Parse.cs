@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using TreeCSharp;
 
 namespace ClassDiagramGeneratorLib
@@ -25,7 +24,7 @@ namespace ClassDiagramGeneratorLib
                 file = sr.ReadToEnd();
             }
             
-            var options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+            StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
             File = file.Split(new[] { '\r', '\n' }, options);
         }
     }
