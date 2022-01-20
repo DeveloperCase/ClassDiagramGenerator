@@ -1,31 +1,37 @@
 ﻿using System;
 using System.IO;
 using TreeCSharp;
+using Convert = Converter.Convert;
 
 namespace ClassDiagramGeneratorLib
 {
     public class Parse
     {
-        private static readonly Tree _tree = new Tree("root");
-        public string Path { get; }
+        public static Tree tree = new Tree("root");
 
-        public string[] File = new string[] { };
+        //public string Path { get; }
+        public string file;
 
-        public Parse(string path)
+        public Parse()
         {
-            Path = path;
+            //Path = path;
         }
 
-        public void ReadFile()
+        public void ReadFile(string path)
         {
-            string file = string.Empty;
-            using (StreamReader sr = new StreamReader(Path))
+            file = string.Empty;
+            using (StreamReader sr = new StreamReader(path))
             {
                 file = sr.ReadToEnd();
             }
-            
-            StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
-            File = file.Split(new[] { '\r', '\n' }, options);
         }
+
+        public string[] Split()
+        {
+            StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+            return file.Split(new[] { '\r', '\n' }, options);
+        }
+
+        
     }
 }

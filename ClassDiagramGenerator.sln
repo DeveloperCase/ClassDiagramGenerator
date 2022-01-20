@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagramGenerator_WPF",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tree_Lib", "Tree_Lib\Tree_Lib.csproj", "{A182C34B-0146-4ED1-8EF0-3D11E4E2C576}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Token-lib", "Token-lib\Token-lib.csproj", "{06535A21-2293-44F8-8F8A-B585DA09097B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A182C34B-0146-4ED1-8EF0-3D11E4E2C576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A182C34B-0146-4ED1-8EF0-3D11E4E2C576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A182C34B-0146-4ED1-8EF0-3D11E4E2C576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06535A21-2293-44F8-8F8A-B585DA09097B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06535A21-2293-44F8-8F8A-B585DA09097B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06535A21-2293-44F8-8F8A-B585DA09097B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06535A21-2293-44F8-8F8A-B585DA09097B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
